@@ -1,0 +1,107 @@
+<div class="container">
+  <h1 class="title">Sistema de Medidas de Roupas</h1>
+
+  <!-- Formulário de Cadastro -->
+  <div class="card">
+    <h2 class="card-title">Adicionar Nova Medida</h2>
+    
+    <div class="form-row">
+      <!-- Campo: Nome da Medida -->
+      <div class="form-group">
+        <label for="nomeMedida">Nome da Medida</label>
+        <input
+          type="text"
+          id="nomeMedida"
+          [(ngModel)]="formData.nomeMedida"
+          placeholder="Ex: Cintura"
+          class="form-control"
+          (keyup.enter)="salvarMedida()"
+        />
+      </div>
+
+      <!-- Campo: Valor -->
+      <div class="form-group">
+        <label for="valorDimensao">Valor</label>
+        <input
+          type="number"
+          id="valorDimensao"
+          [(ngModel)]="formData.valorDimensao"
+          placeholder="0.00"
+          step="0.01"
+          min="0"
+          class="form-control"
+          (keyup.enter)="salvarMedida()"
+        />
+      </div>
+
+      <!-- Campo: Unidade -->
+      <div class="form-group">
+        <label for="unidadeMedida">Unidade</label>
+        <select
+          id="unidadeMedida"
+          [(ngModel)]="formData.unidadeMedida"
+          class="form-control"
+        >
+          <option value="cm">cm</option>
+          <option value="mm">mm</option>
+          <option value="polegadas">polegadas</option>
+        </select>
+      </div>
+
+      <!-- Botão Salvar -->
+      <div class="form-group button-group">
+        <button
+          (click)="salvarMedida()"
+          [disabled]="loading"
+          class="btn btn-primary"
+        >
+          {{ loading ? 'Salvando...' : 'Salvar' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensagem de Erro -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  </div>
+
+  <!-- Tabela de Medidas -->
+  <div class="card">
+    <h2 class="card-title">Medidas Cadastradas</h2>
+
+    <!-- Estado vazio -->
+    <div *ngIf="medidas.length === 0" class="empty-state">
+      Nenhuma medida cadastrada ainda
+    </div>
+
+    <!-- Tabela com dados -->
+    <table *ngIf="medidas.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome da Medida</th>
+          <th>Valor</th>
+          <th>Unidade</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medida of medidas">
+          <td>{{ medida.id }}</td>
+          <td>{{ medida.nomeMedida }}</td>
+          <td>{{ medida.valorDimensao }}</td>
+          <td>{{ medida.unidadeMedida }}</td>
+          <td>
+            <button
+              (click)="deletarMedida(medida.id)"
+              class="btn btn-danger"
+            >
+              Deletar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

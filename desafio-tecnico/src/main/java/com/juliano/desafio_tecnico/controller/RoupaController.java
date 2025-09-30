@@ -29,12 +29,9 @@ public class RoupaController {
 
     @PostMapping("/create")
     public Roupa createNewRoupa(@RequestBody RoupaDto roupaDto){
-        Roupa roupa = roupaService.getRoupaById(roupaDto.getId());
-        if (roupa == null) {
-            return roupaService.save(roupaUtils.convertDtoToEntity(roupaDto));
-        } else {
-            throw new RuntimeException("Roupa já existe");
-        }
+
+        return roupaService.save(roupaUtils.convertDtoToEntity(roupaDto));
+        
     }
 
     @GetMapping("/all")
