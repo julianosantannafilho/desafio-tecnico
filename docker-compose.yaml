@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  desafio-tecnico:
+    build: ./desafio-tecnico
+    ports:
+      - "8080:8080"

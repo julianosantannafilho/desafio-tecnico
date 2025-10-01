@@ -39,10 +39,11 @@ public class RoupaController {
         return roupaService.getAllRoupas();
     }
 
-    @GetMapping("/{id}")
-    public Roupa getRoupaById(@PathVariable Long id) {
-        return roupaService.getRoupaById(id);
-    }
+    //@GetMapping("/{id}")
+    //public Roupa getRoupaById(@PathVariable Long id) {
+    //    return roupaService.getRoupaById(id);
+    //}
+
     
     @DeleteMapping("/{id}")
     public void deleteRoupa(@PathVariable Long id) {
