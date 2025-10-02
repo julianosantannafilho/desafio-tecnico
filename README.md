@@ -10,6 +10,6 @@ docker compose up
 
 - Frontend: localhost:4200
 - H2: localhost:8080/h2-console/
-- URL h2: jdbc:h2:mem:testdb
+- URL (h2-console) h2: jdbc:h2:mem:testdb
 - Username: sa 
 
