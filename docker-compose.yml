@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  desafio-tecnico:
+    image: julianofilho/desafio-front:latest
+    container_name: 'desafio-tecnico'
+    restart: on-failure
+    build:
+      context: ./desafio-tecnico
+      dockerfile: Dockerfile
+      ports:
+        - "8080:8080"
+      networks:
+        - medidas-network
+  frontend:
+    image: julianofilho/desafio-front:latest
+    container_name: 'frontend'
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      depends_on:
+        - desafio-tecnico
+      ports:
+        - "4200:4200"
+      networks:
+        - medidas-network
+networks:
+  medidas-network:
+    driver: bridge
